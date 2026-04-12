@@ -1,144 +1,106 @@
 <!DOCTYPE html>
-<html lang="id">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beranda - Tema Maroon</title>
-    <style>
-        /* CSS INTERNAL */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            line-height: 1.6;
-            background-color: #f9f9f9;
-            color: #333;
-        }
-
-        /* Header & Navigasi */
-        header {
-            background-color: #800000; /* Maroon Utama */
-            color: white;
-            padding: 2rem 1rem;
-            text-align: center;
-        }
-
-        nav {
-            background-color: #4a0000; /* Maroon Gelap */
-            display: flex;
-            justify-content: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        nav a {
-            color: white;
-            padding: 1rem 1.5rem;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-weight: bold;
-            font-size: 0.9rem;
-            transition: background 0.3s;
-        }
-
-        nav a:hover {
-            background-color: #a52a2a; /* Cokelat Kemerahan saat Hover */
-        }
-
-        /* Konten Utama */
-        .container {
-            max-width: 900px;
-            margin: 2rem auto;
-            padding: 2rem;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            min-height: 400px;
-        }
-
-        h2 {
-            color: #800000;
-            margin-bottom: 1rem;
-            border-bottom: 2px solid #800000;
-            display: inline-block;
-        }
-
-        p {
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-            color: #555;
-        }
-
-        .hero-section {
-            text-align: center;
-            padding: 2rem 0;
-        }
-
-        /* Tombol Aksi */
-        .btn {
-            display: inline-block;
-            background-color: #800000;
-            color: white;
-            padding: 0.8rem 1.5rem;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: transform 0.2s;
-        }
-
-        .btn:hover {
-            background-color: images.jpg;
-            transform: scale(1.05);
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 1.5rem;
-            background-color: #800000;
-            color: white;
-            margin-top: 3rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 600px) {
-            nav {
-                flex-direction: column;
-                text-align: center;
-            }
-        }
-    </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <style>
+    body { padding: 20px; background-color: #f8f9fa; }
+    .form-container { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    h4 { border-bottom: 2px solid #0d6efd; padding-bottom: 10px; margin-top: 20px; }
+  </style>
 </head>
 <body>
+  <div class="container form-container">
+    <h2 class="mb-4">Formulir Pengumpulan Data</h2>
+    <form id="myForm" onsubmit="handleFormSubmit(this)">
+      
+      <h4>Data Demografi</h4>
+      <div class="mb-3">
+        <label>Nama Lengkap</label>
+        <input type="text" name="nama" class="form-control" required>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label>Tanggal Lahir</label>
+          <input type="date" name="tgl_lahir" class="form-control" required>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label>Pendidikan</label>
+          <select name="pendidikan" class="form-select">
+            <option value="SMA">SMA/Sederajat</option>
+            <option value="D3">Diploma (D3)</option>
+            <option value="S1">Sarjana (S1)</option>
+            <option value="S2">Pascasarjana (S2)</option>
+          </select>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label>Alamat</label>
+        <textarea name="alamat" class="form-control"></textarea>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label>No. Telepon</label>
+          <input type="tel" name="telp" class="form-control">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label>Email</label>
+          <input type="email" name="email" class="form-control">
+        </div>
+      </div>
 
-    <header>
-        <h1>MY PROFIL WEBSITE</h1>
-        <p style="color: #ffcccc; font-size: 0.9rem;"></p>
-    </header>
+      <h4>Data Perbankan</h4>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label>Nama Bank</label>
+          <input class="form-control" list="bankList" name="bank" placeholder="Cari atau pilih bank...">
+          <datalist id="bankList">
+            <option value="BCA"><option value="Mandiri"><option value="BNI"><option value="BRI">
+          </datalist>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label>Nomor Rekening</label>
+          <input type="number" name="rekening" class="form-control">
+        </div>
+      </div>
 
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="biodata.html">Biodata</a>
-        <a href="galeri.html">Galeri</a>
-        <a href="video.html">Video</a>
-    </nav>
+      <h4>Data Transaksi</h4>
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <label>Tanggal Transaksi</label>
+          <input type="date" name="tgl_transaksi" class="form-control">
+        </div>
+        <div class="col-md-8 mb-3">
+          <label>Uraian</label>
+          <input type="text" name="uraian" class="form-control">
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="d-block">Jenis Transaksi</label>
+        <div class="btn-group w-100" role="group">
+          <input type="radio" class="btn-check" name="jenis_transaksi" id="debet" value="Debet" checked>
+          <label class="btn btn-outline-primary" for="debet">Debet</label>
+          <input type="radio" class="btn-check" name="jenis_transaksi" id="kredit" value="Kredit">
+          <label class="btn btn-outline-danger" for="kredit">Kredit</label>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label>Nominal (Rp)</label>
+        <input type="number" name="nominal" class="form-control">
+      </div>
 
-    <div class="container">
-        <section class="hero-section">
-            <h2>Selamat Datang di Profil Saya</h2>
-            <p>Ini adalah halaman utama dari Profil website pribadi saya. Website ini dirancang dengan perpaduan warna Maroon untuk memberikan kesan yang kuat namun tetap nyaman dipandang.</p>
-            <p>Silakan jelajahi menu navigasi di atas untuk melihat detail biodata, koleksi galeri foto, dan video pilihan saya.</p>
-            <a href="biodata.html" class="btn">Lihat Biodata Saya</a>
-        </section>
-    </div>
+      <button type="submit" class="btn btn-success w-100 mt-4">Kirim Data</button>
+    </form>
+    <div id="output" class="mt-3 text-center fw-bold"></div>
+  </div>
 
-    <footer>
-        <p>&copy; 2026 Norhayani - Dibuat dengan &hearts;</p>
-    </footer>
-
+  <script>
+    function handleFormSubmit(formObject) {
+      document.getElementById('output').innerHTML = "Sedang mengirim...";
+      google.script.run.withSuccessHandler(function(msg) {
+        document.getElementById('output').innerHTML = msg;
+        document.getElementById("myForm").reset();
+      }).processForm(formObject);
+    }
+  </script>
 </body>
-</html>
+</html>https://script.google.com/macros/s/AKfycbwPuNdnYpDuYaVZG8uco5FHW4MGrDDsghyvDSwHTFJYE0jzi5XMNIMI3vOLNHEJsmKvjQ/exec
